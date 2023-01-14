@@ -46,6 +46,7 @@ function addEmployee() {
     }
 
     let employee= {
+        id:arr.length+1,
         Name: inputs[0].value,
         Profession: inputs[1].value,
         Age: inputs[2].value
@@ -73,7 +74,7 @@ function addEmployee() {
     cell4.innerHTML = 'Age: '+arr[arr.length-1].Age;
 
     let delbtn=document.createElement('button');
-    delbtn.setAttribute('id',arr.length-1);
+    delbtn.setAttribute('id',employee.id);
     newtable.setAttribute('id','table-'+delbtn.id);
     delbtn.innerHTML = 'Delete User';
     delbtn.style.color='black';
