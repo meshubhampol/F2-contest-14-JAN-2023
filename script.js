@@ -37,13 +37,17 @@ function showMessage(msg,colour) {
 
 let arr=[];
 
+let tableCopy;
+let count=0;
 
 function addEmployee() {
     showMessage(sucMessage,'#16ff16');
-    if(arr.length === 0) {
+    if(count === 0) {
+        tableCopy=document.getElementById('employee-table').innerHTML;
         document.getElementById('employee-table').remove();
         document.getElementsByClassName('employees-count')[0].remove();
     }
+    count++;
 
     let employee= {
         id:arr.length+1,
@@ -99,4 +103,18 @@ function delRow(arr,id) {
     delete arr[id];
     document.getElementById('table-'+id).remove();
     document.getElementById('row-content-'+id).remove();
+    count--;
+    if(count === 0) {
+        console.log(arr.length);
+        let container=document.getElementsByClassName('employees-container')[0];
+        let setText=document.createElement('div');
+        setText.className='employees-count';
+        setText.innerHTML='You have 0 Employees.';
+        container.appendChild(setText);
+        let reset=document.createElement('table');
+        reset.setAttribute('id','employee-table');
+        reset.innerHTML=tableCopy;
+        let tableSection=document.getElementsByClassName('table-container')[0];
+        tableSection.appendChild(reset);
+    }
 }
